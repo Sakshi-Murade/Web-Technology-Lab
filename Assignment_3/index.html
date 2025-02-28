@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Calculator</title>
+   <link rel="stylesheet" href="style.css">
+   <script type="text/javascript">
+      var a, b, c, d, flag = 0;
+
+      function Result() {
+         if (flag == 0) {
+            a = parseFloat(document.f1.t1.value);
+            document.f1.t1.value = "";
+            flag = 1;
+         } else {
+            c = parseFloat(document.f1.t1.value);
+            document.f1.t1.value = "";
+
+            if (b == 1) {
+               d = a + c;
+               document.f1.t1.value = d;
+            } else if (b == 2) {
+               d = a - c;
+               document.f1.t1.value = d;
+            } else if (b == 3) {
+               d = a * c;
+               document.f1.t1.value = d;
+            } else if (b == 4) {
+               if (c === 0) {
+                  document.f1.t1.value = "Error: Division by 0";
+               } else {
+                  d = a / c;
+                  document.f1.t1.value = d;
+               }
+            }
+            flag = 0;
+         }
+      }
+
+      function setOperation(val) {
+         b = val;
+         a = parseFloat(document.f1.t1.value);
+         document.f1.t1.value = "";
+         flag = 1;
+      }
+   </script>
+   <style>
+/* Center the calculator */
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: #f4f4f4;
+   font-family: Arial, sans-serif;
+}
+
+/* Calculator container with border */
+.main {
+   background: #fff;
+   padding: 20px;
+   border-radius: 12px;
+   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+   text-align: center;
+   border: 3px solid #333; /* Added border */
+}
+
+/* Display screen (kept above the calculator) */
+#res {
+   width: 63%;
+   height: 55px;
+   font-size: 2em;
+   text-align: right;
+   border: 2px solid #ccc;
+   border-radius: 8px;
+   margin-bottom: 12px;
+   padding: 8px;
+   outline: none;
+   display: block;
+   background: #f9f9f9;
+   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button layout */
+.btn {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 8px;
+   padding-top: 5px;
+}
+
+/* Buttons */
+input[type="button"] {
+   width: 65px;
+   height: 65px;
+   font-size: 1.5em;
+   border: none;
+   background: #e0e0e0;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: 0.2s ease-in-out;
+   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover effect */
+input[type="button"]:hover {
+   background: #d1d1d1;
+   transform: scale(1.05);
+}
+
+/* Special buttons */
+input[value="C"] {
+   background: #ff4d4d;
+   color: white;
+   font-weight: bold;
+}
+
+input[value="="] {
+   background: #4caf50;
+   color: white;
+   font-weight: bold;
+}
+
+input[value="+"] {
+   background: #ff9800;
+   color: white;
+}
+
+input[value="-"] {
+   background: #ff9800;
+   color: white;
+}
+
+input[value="x"], input[value="/"] {
+   background: #ff9800;
+   color: white;
+}
+
+input[value="%"] {
+   background: #607d8b;
+   color: white;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+   <div id="calc">
+      <div id="content">
+         <form name="f1">
+            <div id="output">
+               <input type="text" id="res" name="t1" readonly>
+            </div>
+            <table>
+               <tr>
+                  <td><input type="button" value="C" onclick="document.f1.t1.value = ''" id="clear"></td>
+                  <td><input type="button" value="←" onclick="document.f1.t1.value = document.f1.t1.value.slice(0, -1)" id="backspace"></td>
+                  <td><input type="button" value="%" onclick="document.f1.t1.value += '%'" id="modulus"></td>
+                  <td><input type="button" value="/" onclick="setOperation(4)" id="divide"></td>
+               </tr>
+               <tr>
+                  <td><input type="button" value="7" onclick="document.f1.t1.value += '7'"></td>
+                  <td><input type="button" value="8" onclick="document.f1.t1.value += '8'"></td>
+                  <td><input type="button" value="9" onclick="document.f1.t1.value += '9'"></td>
+                  <td><input type="button" value="x" onclick="setOperation(3)" id="multiply"></td>
+               </tr>
+               <tr>
+                  <td><input type="button" value="4" onclick="document.f1.t1.value += '4'"></td>
+                  <td><input type="button" value="5" onclick="document.f1.t1.value += '5'"></td>
+                  <td><input type="button" value="6" onclick="document.f1.t1.value += '6'"></td>
+                  <td><input type="button" value="-" onclick="setOperation(2)" id="subtract"></td>
+               </tr>
+               <tr>
+                  <td><input type="button" value="1" onclick="document.f1.t1.value += '1'"></td>
+                  <td><input type="button" value="2" onclick="document.f1.t1.value += '2'"></td>
+                  <td><input type="button" value="3" onclick="document.f1.t1.value += '3'"></td>
+                  <td><input type="button" value="+" onclick="setOperation(1)" id="add"></td>
+               </tr>
+               <tr>
+                  <td><input type="button" value="00" onclick="document.f1.t1.value += '00'"></td>
+                  <td><input type="button" value="0" onclick="document.f1.t1.value += '0'"></td>
+                  <td><input type="button" value="." onclick="document.f1.t1.value += '.'"></td>
+                  <td><input type="button" value="=" onclick="Result()"></td>
+               </tr>
+            </table>
+         </form>
+      </div>
+   </div>
+</body>
+</html>
